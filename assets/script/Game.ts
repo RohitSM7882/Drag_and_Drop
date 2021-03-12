@@ -61,7 +61,8 @@ export default class NewClass extends cc.Component {
         object.on(cc.Node.EventType.MOUSE_MOVE,(event)=>{
             if(!mouseDown) 
                 return;
-
+            
+            object.opacity = 100;
             let delta = event.getDelta();
 
             let minX = -object.parent.width/2 + object.width/2;
@@ -96,12 +97,14 @@ export default class NewClass extends cc.Component {
             if(result != 0){
                 object.x = this.placeHolderPositions[result-1][0];
                 object.y = this.placeHolderPositions[result-1][1];
+                object.opacity = 255;
             }
             else{
 
                 cc.tween(object)
                 .to(1,{position: cc.v2(this.objectOriginalPositions[sno-1][0],this.objectOriginalPositions[sno-1][1])},{easing:'cubicInOut'})
                 .start();
+                object.opacity = 255;
             }
         });
 
